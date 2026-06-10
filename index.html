@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>点滴滴下数計算アプリ</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#147a5b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="点滴計算">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>点滴滴下数計算アプリ</h1>
+    </header>
+
+    <section class="section" aria-labelledby="volume-title">
+      <h2 id="volume-title">点滴量</h2>
+      <div class="volume-buttons">
+        <label class="choice-button">
+          <input type="radio" name="volume" value="500">
+          <span>500mL</span>
+        </label>
+        <label class="choice-button">
+          <input type="radio" name="volume" value="250">
+          <span>250mL</span>
+        </label>
+        <label class="choice-button">
+          <input type="radio" name="volume" value="100">
+          <span>100mL</span>
+        </label>
+        <label class="choice-button">
+          <input type="radio" name="volume" value="50">
+          <span>50mL</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="time-title">
+      <h2 id="time-title">投与時間</h2>
+      <div class="time-inputs">
+        <label>
+          <input type="number" id="hours" min="0" inputmode="numeric" pattern="[0-9]*" placeholder="2">
+          <span>時間</span>
+        </label>
+        <label>
+          <input type="number" id="minutes" min="0" inputmode="numeric" pattern="[0-9]*" placeholder="30">
+          <span>分</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="set-title">
+      <h2 id="set-title">輸液セット</h2>
+      <div class="set-buttons">
+        <label class="choice-button set-choice">
+          <input type="radio" name="dropFactor" value="20" checked>
+          <span>成人用<br><strong>20滴/mL</strong></span>
+        </label>
+        <label class="choice-button set-choice">
+          <input type="radio" name="dropFactor" value="60">
+          <span>小児用<br><strong>60滴/mL</strong></span>
+        </label>
+      </div>
+    </section>
+
+    <button type="button" id="calculateButton" class="calculate-button">滴下数を計算する</button>
+
+    <section class="message-area" aria-live="polite">
+      <div id="errorMessage" class="error-message" hidden></div>
+
+      <div id="resultArea" class="result-area" hidden>
+        <h2>計算結果</h2>
+        <dl class="result-list">
+          <div>
+            <dt>輸液速度</dt>
+            <dd id="hourlyRate">-</dd>
+          </div>
+          <div>
+            <dt>1分あたり</dt>
+            <dd id="dropsPerMinute">-</dd>
+          </div>
+          <div>
+            <dt>1分あたりの目安</dt>
+            <dd id="roundedDropsPerMinute">-</dd>
+          </div>
+          <div>
+            <dt>10秒あたり</dt>
+            <dd id="dropsPer10Seconds">-</dd>
+          </div>
+          <div>
+            <dt>10秒あたりの目安</dt>
+            <dd id="roundedDropsPer10Seconds">-</dd>
+          </div>
+        </dl>
+        <p id="formulaDetail" class="formula-detail"></p>
+      </div>
+    </section>
+
+    <section class="notice" aria-labelledby="notice-title">
+      <h2 id="notice-title">注意書き</h2>
+      <p>このアプリは滴下数計算の補助ツールです。実際の投与設定は、医師の指示、施設のルール、使用する輸液セットの規格を必ず確認してください。</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
